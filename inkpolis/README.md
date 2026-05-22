@@ -96,3 +96,8 @@ The background contains hand-crafted SVG shapes (ballot boxes, margin lines, mag
 *   **Core Challenge:** Election Process Education
 *   **Winning Innovation:** Breaking the standard "chatbot interface" by packaging Gemini AI inside a gamified, beautifully customized physical sketchbook container with multi-role simulators and custom-stamped myth debunkers.
 *   **Design Paradigm:** Sketch-Alive / Cozy Craft UI
+
+---
+<p align="center">
+  <b>Built by Azhan Ali</b>
+</p>
