@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Caveat, Patrick_Hand } from "next/font/google";
+import { Gochi_Hand, Kalam } from "next/font/google";
 import "./globals.css";
 
-const caveat = Caveat({
+const gochiHand = Gochi_Hand({
   subsets: ["latin"],
-  variable: "--font-caveat",
-  weight: ["400", "600", "700"],
+  variable: "--font-gochi",
+  weight: "400",
 });
 
-const patrickHand = Patrick_Hand({
+const kalam = Kalam({
   subsets: ["latin"],
-  variable: "--font-patrick",
-  weight: "400",
+  variable: "--font-kalam",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${caveat.variable} ${patrickHand.variable}`}>
+    <html lang="en" className={`${gochiHand.variable} ${kalam.variable}`}>
       <body>{children}</body>
     </html>
   );
