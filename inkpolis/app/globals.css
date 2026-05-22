@@ -1,0 +1,391 @@
+@import "tailwindcss";
+
+/* =============================================
+   INKPOLIS — Global Sketch Stylesheet v2
+   Paper textures, wobbly borders, ink aesthetic
+   Creative animated background + full responsive
+   ============================================= */
+
+:root {
+  --paper-bg: #fdf6e3;
+  --paper-dark: #f0e6c8;
+  --paper-aged: #e8d5a3;
+  --ink-primary: #2d1b00;
+  --ink-blue: #1a3a5c;
+  --ink-red: #c0392b;
+  --ink-green: #27ae60;
+  --ink-purple: #6c3483;
+  --ink-orange: #d35400;
+  --pencil-gray: #7f8c8d;
+  --highlight-yellow: rgba(249, 232, 75, 0.55);
+  --highlight-pink: rgba(255, 179, 198, 0.55);
+  --highlight-blue: rgba(100, 149, 237, 0.35);
+  --washi-blue: rgba(100, 149, 237, 0.25);
+  --shadow-ink: 3px 3px 0px rgba(45, 27, 0, 0.22);
+  --font-hand: var(--font-caveat), cursive;
+  --font-body: var(--font-patrick), cursive;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CREATIVE ANIMATED BACKGROUND
+   Layered: animated doodles + paper grain + lines
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+html, body {
+  font-family: var(--font-body);
+  color: var(--ink-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  background-color: #fdf8f0;
+}
+
+/* Layer 1: Animated notebook lines */
+body {
+  background-image:
+    /* Red margin line */
+    linear-gradient(90deg, transparent 60px, rgba(192, 57, 43, 0.18) 60px, rgba(192, 57, 43, 0.18) 62px, transparent 62px),
+    /* Horizontal ruled lines */
+    repeating-linear-gradient(
+      transparent,
+      transparent 31px,
+      rgba(100, 149, 237, 0.13) 31px,
+      rgba(100, 149, 237, 0.13) 32px
+    ),
+    /* Warm cream paper base */
+    linear-gradient(160deg, #fdf8f0 0%, #fef9e7 40%, #fdf6e3 70%, #fef5e4 100%);
+  background-size: 100% 100%, 100% 32px, 100% 100%;
+}
+
+/* Layer 2: Floating doodle SVG background elements */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='600' opacity='0.045'%3E%3C!-- Stars --%3E%3Ctext x='50' y='80' font-size='28' fill='%231a3a5c'%3E%E2%9C%A8%3C/text%3E%3Ctext x='700' y='120' font-size='22' fill='%231a3a5c'%3E%E2%98%85%3C/text%3E%3Ctext x='150' y='500' font-size='20' fill='%231a3a5c'%3E%E2%98%85%3C/text%3E%3Ctext x='650' y='480' font-size='26' fill='%231a3a5c'%3E%E2%9C%A8%3C/text%3E%3C!-- Ballot box --%3E%3Crect x='360' y='250' width='80' height='60' rx='4' stroke='%231a3a5c' stroke-width='3' fill='none'/%3E%3Crect x='370' y='240' width='60' height='15' rx='2' stroke='%231a3a5c' stroke-width='2.5' fill='none'/%3E%3Cline x1='400' y1='255' x2='400' y2='245' stroke='%231a3a5c' stroke-width='2.5'/%3E%3C!-- Pencil --%3E%3Cline x1='80' y1='200' x2='130' y2='150' stroke='%23d35400' stroke-width='4' stroke-linecap='round'/%3E%3Cpolygon points='130,150 120,140 140,135' fill='%23d35400'/%3E%3C!-- Magnifier --%3E%3Ccircle cx='700' cy='300' r='28' stroke='%236c3483' stroke-width='3' fill='none'/%3E%3Cline x1='720' y1='320' x2='740' y2='340' stroke='%236c3483' stroke-width='4' stroke-linecap='round'/%3E%3C!-- Check mark --%3E%3Cpath d='M 100 400 L 115 420 L 145 390' stroke='%2327ae60' stroke-width='4' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C!-- Spiral --%3E%3Cpath d='M 720 60 Q 740 40 760 60 Q 780 80 760 100 Q 740 120 720 100' stroke='%231a3a5c' stroke-width='2.5' fill='none'/%3E%3C!-- Arrow --%3E%3Cpath d='M 200 50 Q 240 30 280 50' stroke='%23d35400' stroke-width='2.5' fill='none' stroke-dasharray='4,3'/%3E%3Cpolygon points='280,50 270,42 270,58' fill='%23d35400'/%3E%3C!-- Small circles --%3E%3Ccircle cx='500' cy='100' r='8' stroke='%231a3a5c' stroke-width='2' fill='none'/%3E%3Ccircle cx='300' cy='450' r='6' stroke='%236c3483' stroke-width='2' fill='none'/%3E%3C!-- Crossed lines doodle --%3E%3Cline x1='580' y1='400' x2='620' y2='440' stroke='%231a3a5c' stroke-width='2'/%3E%3Cline x1='620' y1='400' x2='580' y2='440' stroke='%231a3a5c' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: 800px 600px;
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 0;
+  animation: driftDoodles 60s linear infinite;
+}
+
+@keyframes driftDoodles {
+  0%   { background-position: 0 0; }
+  100% { background-position: 800px 600px; }
+}
+
+/* Layer 3: Paper grain noise */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure content sits above background layers */
+body > * { position: relative; z-index: 1; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATED FLOATING DOODLES (positioned elements)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.bg-doodle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.07;
+  font-size: 2rem;
+  user-select: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SKETCH CARD SYSTEM
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.sketch-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 2.5px solid var(--ink-primary);
+  border-radius: 4px;
+  box-shadow: var(--shadow-ink);
+  position: relative;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  backdrop-filter: blur(2px);
+}
+
+.sketch-card:hover {
+  transform: rotate(-0.4deg) translateY(-2px);
+  box-shadow: 5px 5px 0px rgba(45, 27, 0, 0.18);
+}
+
+.sketch-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border: 1.5px solid var(--ink-primary);
+  border-radius: 5px;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BUTTONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.btn-sketch {
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.55rem 1.3rem;
+  background: rgba(253, 246, 227, 0.95);
+  border: 2.5px solid var(--ink-primary);
+  border-radius: 4px;
+  box-shadow: 3px 3px 0px var(--ink-primary);
+  cursor: pointer;
+  transition: all 0.12s ease;
+  color: var(--ink-primary);
+  letter-spacing: 0.02em;
+}
+
+.btn-sketch:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 4px 4px 0px var(--ink-primary);
+}
+
+.btn-sketch:active {
+  transform: translate(2px, 2px);
+  box-shadow: 1px 1px 0px var(--ink-primary);
+}
+
+.btn-sketch.primary {
+  background: var(--ink-primary);
+  color: var(--paper-bg);
+}
+
+.btn-sketch.blue {
+  background: var(--ink-blue);
+  color: #fff;
+  border-color: var(--ink-blue);
+  box-shadow: 3px 3px 0px rgba(26, 58, 92, 0.45);
+}
+
+.btn-sketch.green {
+  background: var(--ink-green);
+  color: #fff;
+  border-color: var(--ink-green);
+  box-shadow: 3px 3px 0px rgba(39, 174, 96, 0.4);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TYPOGRAPHY
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.heading-sketch {
+  font-family: var(--font-hand);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HIGHLIGHTS & DECORATIVE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.highlight-yellow { background: var(--highlight-yellow); padding: 0 4px; border-radius: 2px; }
+.highlight-pink    { background: var(--highlight-pink);   padding: 0 4px; border-radius: 2px; }
+.highlight-blue    { background: var(--highlight-blue);   padding: 0 4px; border-radius: 2px; }
+
+.washi-tape {
+  background: var(--washi-blue);
+  border-top: 1px dashed rgba(100,149,237,0.4);
+  border-bottom: 1px dashed rgba(100,149,237,0.4);
+  transform: rotate(-0.8deg);
+  padding: 2px 8px;
+  display: inline-block;
+}
+
+.sketch-divider {
+  border: none;
+  border-top: 2px dashed var(--pencil-gray);
+  margin: 1.25rem 0;
+  opacity: 0.45;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SPEECH BUBBLE
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.speech-bubble {
+  position: relative;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2.5px solid var(--ink-primary);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  box-shadow: var(--shadow-ink);
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+}
+
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  left: 24px;
+  border-width: 14px 10px 0;
+  border-style: solid;
+  border-color: var(--ink-primary) transparent transparent;
+}
+
+.speech-bubble::before {
+  content: "";
+  position: absolute;
+  bottom: -11px;
+  left: 25px;
+  border-width: 13px 9px 0;
+  border-style: solid;
+  border-color: white transparent transparent;
+  z-index: 1;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BADGE STICKERS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.badge-sticker {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0.75rem;
+  border: 2.5px solid var(--ink-primary);
+  border-radius: 50%;
+  width: 82px;
+  height: 82px;
+  justify-content: center;
+  background: rgba(253, 246, 227, 0.95);
+  box-shadow: 3px 3px 0 var(--ink-primary);
+  font-family: var(--font-hand);
+  font-size: 0.65rem;
+  text-align: center;
+  font-weight: 700;
+  transition: transform 0.2s ease;
+  cursor: default;
+}
+
+.badge-sticker:hover { transform: rotate(5deg) scale(1.1); }
+.badge-sticker.earned { background: #fffde7; border-color: #f39c12; box-shadow: 3px 3px 0 #f39c12; }
+.badge-sticker.locked { opacity: 0.38; filter: grayscale(1); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   STAMP EFFECT
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes stampIn {
+  0%   { transform: scale(2) rotate(-15deg); opacity: 0; }
+  60%  { transform: scale(0.95) rotate(2deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+.stamp {
+  animation: stampIn 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+  border: 3px solid var(--ink-red);
+  color: var(--ink-red);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  display: inline-block;
+  opacity: 0.85;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATIONS
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes floatPaper {
+  0%, 100% { transform: translateY(0) rotate(-0.5deg); }
+  50%       { transform: translateY(-6px) rotate(0.5deg); }
+}
+.float-paper { animation: floatPaper 4s ease-in-out infinite; }
+
+@keyframes stickerPop {
+  0%   { transform: scale(0) rotate(-20deg); }
+  70%  { transform: scale(1.15) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.sticker-pop { animation: stickerPop 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards; }
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-6px); }
+  40%       { transform: translateX(6px); }
+  60%       { transform: translateX(-4px); }
+  80%       { transform: translateX(4px); }
+}
+.shake { animation: shake 0.4s ease; }
+
+@keyframes drawLine {
+  from { stroke-dashoffset: 1000; }
+  to   { stroke-dashoffset: 0; }
+}
+.draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 1.5s ease forwards;
+}
+
+@keyframes wiggleIn {
+  0%   { transform: rotate(-3deg) scale(0.95); opacity: 0; }
+  60%  { transform: rotate(1deg) scale(1.02); opacity: 1; }
+  100% { transform: rotate(0deg) scale(1); opacity: 1; }
+}
+.wiggle-in { animation: wiggleIn 0.4s ease forwards; }
+
+/* Pencil scribble underline effect */
+.scribble-underline {
+  position: relative;
+  display: inline-block;
+}
+.scribble-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='6'%3E%3Cpath d='M0,3 Q15,1 30,3 Q45,5 60,3 Q75,1 90,3 Q105,5 120,3' stroke='%231a3a5c' stroke-width='2.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 120px 6px;
+}
+
+/* Lined paper effect */
+.lined-paper {
+  background-image: repeating-linear-gradient(
+    transparent, transparent 27px,
+    rgba(100, 149, 237, 0.13) 27px,
+    rgba(100, 149, 237, 0.13) 28px
+  );
+  background-size: 100% 28px;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCROLLBAR
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--paper-dark); border-radius: 4px; }
+::-webkit-scrollbar-thumb { background: var(--pencil-gray); border-radius: 4px; border: 2px solid var(--paper-dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-primary); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE DESIGN
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .speech-bubble { font-size: 0.95rem; padding: 0.8rem 1rem; }
+  .badge-sticker { width: 70px; height: 70px; font-size: 0.6rem; }
+  .btn-sketch { font-size: 0.95rem; padding: 0.45rem 1rem; }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .speech-bubble { font-size: 0.88rem; }
+  .badge-sticker { width: 62px; height: 62px; font-size: 0.56rem; }
+  .btn-sketch { font-size: 0.88rem; padding: 0.4rem 0.8rem; }
+  .sketch-card { border-width: 2px; }
+}
