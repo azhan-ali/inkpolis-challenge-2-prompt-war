@@ -26,9 +26,9 @@ Current context:
 
     const response = await ai.models.generateContent({
       model: GEMINI_MODEL,
-      systemInstruction: contextInstruction,
       contents,
       config: {
+        systemInstruction: contextInstruction,
         maxOutputTokens: 300,
         temperature: 0.75,
       },
