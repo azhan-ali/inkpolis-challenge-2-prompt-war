@@ -22,8 +22,8 @@
   --highlight-blue: rgba(100, 149, 237, 0.35);
   --washi-blue: rgba(100, 149, 237, 0.25);
   --shadow-ink: 3px 3px 0px rgba(45, 27, 0, 0.22);
-  --font-hand: var(--font-gochi), cursive;
-  --font-body: var(--font-kalam), cursive;
+  --font-hand: var(--font-fredoka), sans-serif;
+  --font-body: var(--font-outfit), sans-serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }

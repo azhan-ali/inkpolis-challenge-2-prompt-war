@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Gochi_Hand, Kalam } from "next/font/google";
+import { Fredoka, Outfit } from "next/font/google";
 import "./globals.css";
 
-const gochiHand = Gochi_Hand({
+const fredoka = Fredoka({
   subsets: ["latin"],
-  variable: "--font-gochi",
-  weight: "400",
+  variable: "--font-fredoka",
+  weight: ["400", "500", "600", "700"],
 });
 
-const kalam = Kalam({
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: "--font-kalam",
-  weight: ["400", "700"],
+  variable: "--font-outfit",
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${gochiHand.variable} ${kalam.variable}`}>
+    <html lang="en" className={`${fredoka.variable} ${outfit.variable}`}>
       <body>{children}</body>
     </html>
   );
